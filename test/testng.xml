@@ -1,0 +1,8 @@
+<suite name="TestSuite">
+<test name="Testing">
+    <classes>
+        <class name="test.epam.text.action.MainTest"/>
+        <class name="test.epam.text.parsing.ParsingTest"/>
+    </classes>
+</test>
+</suite>

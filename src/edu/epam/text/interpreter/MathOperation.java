@@ -23,23 +23,6 @@ public enum MathOperation {
     }
     public int getPriority(){ return priority; }
 
-    //    OR("|"),
-//    OR("|"),
-//    OR("|"),
-//    OR("|"),
-//    OR("|"),
-//    OR("|"),
-//    public static final String NOT = "~";
-//    public static final String AND = "&";
-//    public static final String XOR = "^";
-//    public static final String LEFTSHIFT = "<<";
-//    public static final String RIGHTSHIFT = ">>";
-//    public static final String LEFTBRACKET = "(";
-//    public static final String RIGHTBRACKET = ")";
-//    public static final String PLUS = "+";
-//    public static final String MINUS = "-";
-//    public static final String MULTIPLY = "*";
-//    public static final String DIVIDE = "/";
 
 
 }

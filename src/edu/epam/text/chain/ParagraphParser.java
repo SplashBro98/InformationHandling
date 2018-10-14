@@ -1,15 +1,10 @@
 package edu.epam.text.chain;
 
-public class ParagraphParser implements DataParser {
-    private DataParser next;
+import edu.epam.text.entity.UnitComposite;
 
-    public ParagraphParser(DataParser next) {
-        this.next = next;
-    }
+public class ParagraphParser extends DataParser {
 
-    @Override
-    public void parseText() {
-
-        next.parseText();
+    public ParagraphParser(String regex) {
+        super(regex);
     }
 }

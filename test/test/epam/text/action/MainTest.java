@@ -1,7 +1,7 @@
-package test.epam.text;
+package test.epam.text.action;
 
-import edu.epam.text.entity.Paragraph;
-import edu.epam.text.entity.Sentence;
+import edu.epam.text.entity.Letter;
+import edu.epam.text.entity.UnitComposite;
 import edu.epam.text.interpreter.Client;
 import edu.epam.text.interpreter.Context;
 import edu.epam.text.util.PolandNotationConverter;
@@ -9,8 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Stack;
 
 public class MainTest {
 
@@ -35,7 +33,8 @@ public class MainTest {
                 {"2 ~ 5 |",-3},
                 {"3 5 >>",0},
                 {"6 ~ 9 & 3 4 & |",9},
-                {"5 1 2 & 3 4 1 5 ^ 6 47 & | & 3 | | 2 | & 1 | |",5}
+                {"5 1 2 & 3 4 1 5 ^ 6 47 & | & 3 | | 2 | & 1 | |",5},
+                {"7 5 ^ 1 2 2 5 2 >> 71 & | << & | 1200 |",1202},
         };
     }
     @Test(dataProvider = "polska")
@@ -54,6 +53,7 @@ public class MainTest {
                 {"3>>5","3 5 >>"},
                 {"~6&9|(3&4)","6 ~ 9 & 3 4 & |"},
                 {"5|(1&2&(3|(4&(1^5|6&47)|3)|2)|1)","5 1 2 & 3 4 1 5 ^ 6 47 & | & 3 | | 2 | & 1 | |"},
+                {"(7^5|1&2<<(2|5>>2&71))|1200","7 5 ^ 1 2 2 5 2 >> 71 & | << & | 1200 |"}
         };
     }
     @Test(dataProvider = "convertation")
@@ -65,11 +65,20 @@ public class MainTest {
 
     @Test
     public void composite() {
-        Paragraph base = new Paragraph();
-        Sentence first = new Sentence();
-        Sentence second = new Sentence();
-        base.write();
-        System.out.println(5|(1&2&(3|(4&(1^5|6&47)|3)|2)|1));
+        UnitComposite first = new UnitComposite();
+        UnitComposite second = new UnitComposite();
+        UnitComposite third = new UnitComposite();
+        Letter letter1 = new Letter('a');
+        Letter letter2 = new Letter('b');
+        Letter letter3 = new Letter('c');
+        Letter letter4 = new Letter('d');
+        first.add(second);
+        second.add(third);
+        third.add(letter1);
+        third.add(letter2);
+        third.add(letter3);
+        third.add(letter4);
+        first.write();
 
     }
 }

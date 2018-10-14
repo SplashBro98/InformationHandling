@@ -11,6 +11,11 @@ public class Letter implements Component {
 
     @Override
     public void write() {
-        System.out.println(character);
+        System.out.print(character);
+    }
+
+    @Override
+    public boolean add(Component component) {
+        return false;
     }
 }

@@ -5,4 +5,5 @@ import java.util.function.Consumer;
 
 public interface Component {
     void write();
+    boolean add(Component component);
 }
