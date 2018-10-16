@@ -1,18 +1,17 @@
 package edu.epam.text.chain;
 
+import edu.epam.text.composite.ComponentType;
+import edu.epam.text.entity.Symbol;
 import edu.epam.text.entity.UnitComposite;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public abstract class DataParser {
-    DataParser next;
-    String regex;
+    private DataParser next = DefaultDataParser.getInstance();
 
-    public DataParser(String regex) {
-        this.regex = regex;
+
+    public DataParser(){}
+
+    public DataParser(DataParser parser) {
+        this.next = parser;
     }
 
     public void setNext(DataParser parser) {
@@ -23,34 +22,22 @@ public abstract class DataParser {
         return next;
     }
 
-    public String getRegex() {
-        return regex;
-    }
+    abstract public void parseText(UnitComposite composite, String input);
 
-    public void setRegex(String regex) {
-        this.regex = regex;
-    }
+    private static class DefaultDataParser extends DataParser{
+        private static DefaultDataParser instance;
 
+        public static DefaultDataParser getInstance() {
+            return instance;
+        }
 
-//    public void parseText(UnitComposite composite, String input) {
-//        List<String> strings = Arrays.asList(input.split(regex));
-//        for (String string : strings) {
-//            UnitComposite current = new UnitComposite();
-//            composite.add(current);
-//            if (next != null) {
-//                next.parseText(current, string);
-//            }
-//        }
-//    }
-    public void parseText(UnitComposite composite, String input) {
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(input);
-        while (m.find()){
-            UnitComposite current = new UnitComposite();
-            composite.add(current);
-            if (next != null) {
-                next.parseText(current, m.group());
+        @Override
+        public void parseText(UnitComposite composite, String input) {
+            char[] characters = input.toCharArray();
+            for(char ch : characters){
+                composite.add(new Symbol(ch, ComponentType.LETTER));
             }
         }
     }
+
 }

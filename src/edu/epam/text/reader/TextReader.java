@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TetraReader {
+public class TextReader {
     private static final String PATH = "input\\input.txt";
     private static Logger logger = LogManager.getLogger();
 
-    public List<String> readInfo(String filepath){
+    public String readInfo(String filepath){
         List<String> result;
         FileReader fileReader;
         try{
@@ -29,8 +29,9 @@ public class TetraReader {
             }
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             Stream<String> stream = bufferedReader.lines();
-            result = stream.collect(Collectors.toList());
-            return result;
+            StringBuilder builder = new StringBuilder();
+            stream.forEach(o -> builder.append(o));
+            return builder.toString();
 
         }catch (IOException e){
             logger.log(Level.FATAL,"Wrong filepath: " + filepath, e);

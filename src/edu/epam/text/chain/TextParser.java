@@ -6,19 +6,16 @@ import edu.epam.text.entity.UnitComposite;
 import java.util.Arrays;
 import java.util.List;
 
-public class SentenceParser extends DataParser {
-    private static final String DIVIDE_INTO_LEXEMS = "\\p{Blank}+";
-    private static final ComponentType NEW_COMPONENT_TYPE = ComponentType.LEXEME;
+public class TextParser extends DataParser {
+    private static final String DIVIDE_INTO_PARAGRAPHS = "\\t";//change regex
+    private static final ComponentType NEW_COMPONENT_TYPE = ComponentType.PARAGRAPH;
 
-
-    public SentenceParser(DataParser dataParser) {
+    public TextParser(DataParser dataParser) {
         super(dataParser);
-
     }
 
-    @Override
     public void parseText(UnitComposite composite, String input) {
-        List<String> stringList = Arrays.asList(input.trim().split(DIVIDE_INTO_LEXEMS));
+        List<String> stringList = Arrays.asList(input.trim().split(DIVIDE_INTO_PARAGRAPHS));
         for (String string : stringList) {
             UnitComposite current = new UnitComposite(NEW_COMPONENT_TYPE);
             composite.add(current);

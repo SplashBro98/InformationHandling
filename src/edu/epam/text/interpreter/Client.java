@@ -8,9 +8,6 @@ public class Client {
 
     public void parse(String expression){
         for(String lexeme : expression.split("\\p{Blank}+")){
-            if(lexeme.isEmpty()){
-                continue;
-            }
             if(Character.isDigit(lexeme.charAt(0))){
                expressions.add(c -> c.push(Integer.parseInt(lexeme)));
             }
