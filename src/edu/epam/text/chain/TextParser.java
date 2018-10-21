@@ -1,7 +1,8 @@
 package edu.epam.text.chain;
 
 import edu.epam.text.composite.ComponentType;
-import edu.epam.text.entity.UnitComposite;
+import edu.epam.text.composite.TextComponent;
+import edu.epam.text.composite.UnitComposite;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ public class TextParser extends DataParser {
         super(dataParser);
     }
 
-    public void parseText(UnitComposite composite, String input) {
+    public void parseText(TextComponent composite, String input) {
         List<String> stringList = Arrays.asList(input.trim().split(DIVIDE_INTO_PARAGRAPHS));
         for (String string : stringList) {
             UnitComposite current = new UnitComposite(NEW_COMPONENT_TYPE);

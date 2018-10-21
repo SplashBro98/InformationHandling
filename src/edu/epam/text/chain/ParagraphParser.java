@@ -1,7 +1,8 @@
 package edu.epam.text.chain;
 
 import edu.epam.text.composite.ComponentType;
-import edu.epam.text.entity.UnitComposite;
+import edu.epam.text.composite.TextComponent;
+import edu.epam.text.composite.UnitComposite;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,7 +17,7 @@ public class ParagraphParser extends DataParser {
     }
 
     @Override
-    public void parseText(UnitComposite composite, String input) {
+    public void parseText(TextComponent composite, String input) {
         Pattern p = Pattern.compile(DIVIDE_INTO_SENTENCES);
         Matcher m = p.matcher(input);
         while (m.find()) {

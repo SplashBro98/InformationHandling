@@ -25,9 +25,9 @@ public class ConverterTest {
         return new Object[][]{
                 {"13 2 <<",52},
                 {"4 5 6 | ^",3},
-                {"3 5 & 8 |",9},
+                {"3 5 & 8 | &",9},
                 {"2 ~ 5 |",-3},
-                {"3 5 >>",0},
+                {"32 3 >>",4},
                 {"6 ~ 9 & 3 4 & |",9},
                 {"5 1 2 & 3 4 1 5 ^ 6 47 & | & 3 | | 2 | & 1 | |",5},
                 {"7 5 ^ 1 2 2 5 2 >> 71 & | << & | 1200 |",1202},
@@ -38,6 +38,7 @@ public class ConverterTest {
         client.parse(input);
         int actual = client.calculate();
         Assert.assertEquals(actual,expected);
+
     }
 
     @DataProvider(name = "convertation")

@@ -2,7 +2,7 @@ package test.epam.text.parsing;
 
 import edu.epam.text.chain.*;
 import edu.epam.text.composite.ComponentType;
-import edu.epam.text.entity.UnitComposite;
+import edu.epam.text.composite.UnitComposite;
 import edu.epam.text.reader.TextReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;

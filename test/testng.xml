@@ -3,6 +3,8 @@
     <classes>
         <class name="test.epam.text.action.MainTest"/>
         <class name="test.epam.text.parsing.ParsingTest"/>
+        <class name="test.epam.text.reading.ReaderTest"/>
+        <class name="test.epam.text.util.ConverterTest"/>
     </classes>
 </test>
 </suite>

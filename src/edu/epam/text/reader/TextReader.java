@@ -30,7 +30,7 @@ public class TextReader {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             Stream<String> stream = bufferedReader.lines();
             StringBuilder builder = new StringBuilder();
-            stream.forEach(o -> builder.append(o));
+            stream.forEach(o -> builder.append(" " + o));
             return builder.toString();
 
         }catch (IOException e){

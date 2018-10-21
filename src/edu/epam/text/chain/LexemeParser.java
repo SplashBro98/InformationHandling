@@ -1,8 +1,9 @@
 package edu.epam.text.chain;
 
 import edu.epam.text.composite.ComponentType;
-import edu.epam.text.entity.Symbol;
-import edu.epam.text.entity.UnitComposite;
+import edu.epam.text.composite.TextComponent;
+import edu.epam.text.composite.Symbol;
+import edu.epam.text.composite.UnitComposite;
 import edu.epam.text.interpreter.Client;
 import edu.epam.text.util.PolandNotationConverter;
 
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class LexemeParser extends DataParser {
 
-    private static final String EXPRESSION_REGEX = "[\\d|&<<>>()~^]+";
+    private static final String EXPRESSION_REGEX = "[\\d|&<{2}>{2}()~^]+";
 
     public LexemeParser() {
     }
@@ -28,7 +29,7 @@ public class LexemeParser extends DataParser {
     }
 
     @Override
-    public void parseText(UnitComposite composite, String input) {
+    public void parseText(TextComponent composite, String input) {
         if(isExpression(input)){
             PolandNotationConverter converter = new PolandNotationConverter();
             Client client = new Client();

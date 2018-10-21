@@ -1,8 +1,8 @@
 package edu.epam.text.chain;
 
 import edu.epam.text.composite.ComponentType;
-import edu.epam.text.entity.Symbol;
-import edu.epam.text.entity.UnitComposite;
+import edu.epam.text.composite.TextComponent;
+import edu.epam.text.composite.Symbol;
 
 public abstract class DataParser {
     private DataParser next = DefaultDataParser.getInstance();
@@ -22,7 +22,7 @@ public abstract class DataParser {
         return next;
     }
 
-    abstract public void parseText(UnitComposite composite, String input);
+    abstract public void parseText(TextComponent composite, String input);
 
     private static class DefaultDataParser extends DataParser{
         private static DefaultDataParser instance;
@@ -32,7 +32,7 @@ public abstract class DataParser {
         }
 
         @Override
-        public void parseText(UnitComposite composite, String input) {
+        public void parseText(TextComponent composite, String input) {
             char[] characters = input.toCharArray();
             for(char ch : characters){
                 composite.add(new Symbol(ch, ComponentType.LETTER));

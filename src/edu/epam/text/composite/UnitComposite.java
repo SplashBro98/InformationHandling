@@ -1,4 +1,4 @@
-package edu.epam.text.entity;
+package edu.epam.text.composite;
 
 import edu.epam.text.composite.ComponentType;
 import edu.epam.text.composite.TextComponent;
@@ -6,18 +6,35 @@ import edu.epam.text.composite.TextComponent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class UnitComposite implements TextComponent {
-    List<TextComponent> textComponents = new ArrayList<>();
+    private List<TextComponent> textComponents = new ArrayList<>();
     private ComponentType componentType;
 
-    public List<TextComponent> getTextComponents() {
-        return Collections.unmodifiableList(textComponents);
+    @Override
+    public Optional<List<TextComponent>> getTextComponents() {
+        return Optional.of(Collections.unmodifiableList(textComponents));
     }
 
     public UnitComposite(ComponentType componentType) {
         this.componentType = componentType;
+    }
+
+    public ComponentType getComponentType() {
+        return componentType;
+    }
+
+    @Override
+    public int getAmount() {
+        return textComponents.size();
+    }
+
+    @Override
+    public Character getCharacter() {
+        return null;
     }
 
     @Override
