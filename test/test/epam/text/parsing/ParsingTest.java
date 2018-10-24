@@ -2,7 +2,7 @@ package test.epam.text.parsing;
 
 import edu.epam.text.chain.*;
 import edu.epam.text.composite.ComponentType;
-import edu.epam.text.composite.UnitComposite;
+import edu.epam.text.composite.TextComposite;
 import edu.epam.text.reader.TextReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -24,7 +24,7 @@ public class ParsingTest {
 
         TextReader reader = new TextReader();
 
-        UnitComposite text = new UnitComposite(ComponentType.TEXT);
+        TextComposite text = new TextComposite(ComponentType.TEXT);
         textParser.parseText(text,reader.readInfo(FILEPATH));
 
 

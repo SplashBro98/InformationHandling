@@ -1,17 +1,18 @@
 package edu.epam.text.interpreter;
 
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Context{
-    private Stack<Integer> stack = new Stack<>();
+    private Deque<Integer> deque = new ArrayDeque<>();
 
     public void push(int i) {
-        stack.push(i);
+        deque.push(i);
     }
 
     public int pop() {
-        return stack.pop();
+        return deque.pop();
     }
 
 }

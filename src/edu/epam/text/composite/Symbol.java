@@ -5,10 +5,6 @@ import edu.epam.text.composite.TextComponent;
 
 
 import javafx.scene.effect.Light;
-import java.awt.*;
-
-
-
 
 
 import java.util.List;
@@ -22,7 +18,6 @@ public class Symbol implements TextComponent {
         this.character = character;
         this.componentType = componentType;
     }
-    private Point point;
 
     @Override
     public ComponentType getComponentType() {

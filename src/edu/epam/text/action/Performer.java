@@ -2,7 +2,7 @@ package edu.epam.text.action;
 
 import edu.epam.text.composite.ComponentType;
 import edu.epam.text.composite.TextComponent;
-import edu.epam.text.composite.UnitComposite;
+import edu.epam.text.composite.TextComposite;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,12 +15,12 @@ import java.util.Optional;
 public class Performer {
     private static Logger logger = LogManager.getLogger();
 
-    public Optional<UnitComposite> sortByCountOfSentences(UnitComposite composite) {
+    public Optional<TextComposite> sortByCountOfSentences(TextComposite composite) {
         if (composite.getComponentType() != ComponentType.TEXT) {
             logger.log(Level.INFO, "This composite isn`t a text");
             return Optional.empty();
         }
-        UnitComposite result = new UnitComposite(ComponentType.TEXT);
+        TextComposite result = new TextComposite(ComponentType.TEXT);
         List<TextComponent> buffer = new ArrayList<>();
         for(TextComponent component : composite.getTextComponents().get()){
             buffer.add(component);
@@ -30,7 +30,7 @@ public class Performer {
         return Optional.of(result);
     }
 
-    private Optional<UnitComposite> sortWordsByLength(TextComponent composite) {
+    private Optional<TextComposite> sortWordsByLength(TextComponent composite) {
         if (composite.getComponentType() != ComponentType.SENTENCE) {
             logger.log(Level.INFO, "This composite isn`t a sentence");
             return Optional.empty();
@@ -46,9 +46,9 @@ public class Performer {
         words.sort(Comparator.comparingInt(TextComponent::getAmount));
 
         int i = 0;
-        UnitComposite result = new UnitComposite(ComponentType.SENTENCE);
+        TextComposite result = new TextComposite(ComponentType.SENTENCE);
         for (TextComponent lexeme : composite.getTextComponents().get()) {
-            TextComponent newLexeme = new UnitComposite(ComponentType.LEXEME);
+            TextComponent newLexeme = new TextComposite(ComponentType.LEXEME);
             for (TextComponent wordOrSymbol : lexeme.getTextComponents().get()) {
                 if (wordOrSymbol.getComponentType() == ComponentType.WORD) {
                     newLexeme.add(words.get(i++));
@@ -61,14 +61,14 @@ public class Performer {
         return Optional.of(result);
     }
 
-    public Optional<UnitComposite> sortEverySentence(TextComponent component) {
+    public Optional<TextComposite> sortEverySentence(TextComponent component) {
         if (component.getComponentType() != ComponentType.TEXT) {
             logger.log(Level.INFO, "This composite isn`t a text");
             return Optional.empty();
         }
-        UnitComposite result = new UnitComposite(ComponentType.TEXT);
+        TextComposite result = new TextComposite(ComponentType.TEXT);
         for (TextComponent oldParagraph : component.getTextComponents().get()) {
-            UnitComposite newParagraph = new UnitComposite(ComponentType.PARAGRAPH);
+            TextComposite newParagraph = new TextComposite(ComponentType.PARAGRAPH);
             for (TextComponent oldSentence : oldParagraph.getTextComponents().get()) {
                 if (sortWordsByLength(oldSentence).isPresent()) {
                     newParagraph.add(sortWordsByLength(oldSentence).get());
@@ -93,13 +93,13 @@ public class Performer {
         return result;
     }
 
-    public Optional<UnitComposite> sortByCountOfSymbol(TextComponent composite, Character ch) {
+    public Optional<TextComposite> sortByCountOfSymbol(TextComponent composite, Character ch) {
         if (composite.getComponentType() != ComponentType.SENTENCE) {
             logger.log(Level.INFO, "This composite isn`t a sentence");
             return Optional.empty();
         }
         Performer performer = new Performer();
-        UnitComposite result = new UnitComposite(ComponentType.SENTENCE);
+        TextComposite result = new TextComposite(ComponentType.SENTENCE);
         List<TextComponent> buffer = new ArrayList<>();
         for(TextComponent component : composite.getTextComponents().get()){
             buffer.add(component);

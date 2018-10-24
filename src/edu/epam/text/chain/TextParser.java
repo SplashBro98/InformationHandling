@@ -2,13 +2,13 @@ package edu.epam.text.chain;
 
 import edu.epam.text.composite.ComponentType;
 import edu.epam.text.composite.TextComponent;
-import edu.epam.text.composite.UnitComposite;
+import edu.epam.text.composite.TextComposite;
+import edu.epam.text.util.Separator;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class TextParser extends DataParser {
-    private static final String DIVIDE_INTO_PARAGRAPHS = "\\t";//change regex
     private static final ComponentType NEW_COMPONENT_TYPE = ComponentType.PARAGRAPH;
 
     public TextParser(DataParser dataParser) {
@@ -16,9 +16,9 @@ public class TextParser extends DataParser {
     }
 
     public void parseText(TextComponent composite, String input) {
-        List<String> stringList = Arrays.asList(input.trim().split(DIVIDE_INTO_PARAGRAPHS));
+        List<String> stringList = Arrays.asList(input.trim().split(Separator.TABULATION));
         for (String string : stringList) {
-            UnitComposite current = new UnitComposite(NEW_COMPONENT_TYPE);
+            TextComposite current = new TextComposite(NEW_COMPONENT_TYPE);
             composite.add(current);
             this.getNext().parseText(current, string);
         }

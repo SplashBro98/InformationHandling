@@ -3,15 +3,17 @@ package edu.epam.text.chain;
 import edu.epam.text.composite.ComponentType;
 import edu.epam.text.composite.TextComponent;
 import edu.epam.text.composite.Symbol;
-import edu.epam.text.composite.UnitComposite;
+import edu.epam.text.composite.TextComposite;
 import edu.epam.text.interpreter.Client;
 import edu.epam.text.util.PolandNotationConverter;
 
 import java.util.regex.Pattern;
 
+import static edu.epam.text.util.Separator.EXPRESSION_REGEX;
+import static edu.epam.text.util.Separator.HYPHEN;
+
 public class LexemeParser extends DataParser {
 
-    private static final String EXPRESSION_REGEX = "[\\d|&<{2}>{2}()~^]+";
 
     public LexemeParser() {
     }
@@ -21,7 +23,7 @@ public class LexemeParser extends DataParser {
     }
 
     private boolean checkSymbol(char ch){
-        return (Character.isLetterOrDigit(ch) || ch == '-');
+        return (Character.isLetterOrDigit(ch) || ch == HYPHEN);
     }
 
     public boolean isExpression(String input){
@@ -35,7 +37,7 @@ public class LexemeParser extends DataParser {
             Client client = new Client();
             client.parse(converter.transform(input));
             int actual = client.calculate();
-            UnitComposite current = new UnitComposite(ComponentType.WORD);
+            TextComposite current = new TextComposite(ComponentType.WORD);
             composite.add(current);
             this.getNext().parseText(current, String.valueOf(actual));
             return;
@@ -47,7 +49,7 @@ public class LexemeParser extends DataParser {
                 do{
                     i++;
                 }while (i < characters.length && checkSymbol(characters[i]));
-                UnitComposite current = new UnitComposite(ComponentType.WORD);
+                TextComposite current = new TextComposite(ComponentType.WORD);
                 composite.add(current);
                 this.getNext().parseText(current, input.substring(startIndex,i));
                 i--;

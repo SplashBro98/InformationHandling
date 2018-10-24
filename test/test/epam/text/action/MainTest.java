@@ -4,12 +4,11 @@ import edu.epam.text.action.Performer;
 import edu.epam.text.chain.*;
 import edu.epam.text.composite.ComponentType;
 import edu.epam.text.composite.TextComponent;
-import edu.epam.text.composite.UnitComposite;
+import edu.epam.text.composite.TextComposite;
 import edu.epam.text.interpreter.Client;
 import edu.epam.text.interpreter.Context;
 import edu.epam.text.reader.TextReader;
 import edu.epam.text.util.PolandNotationConverter;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -20,7 +19,7 @@ public class MainTest {
     private Context context;
     private Performer performer;
     private PolandNotationConverter converter;
-    private UnitComposite mainComposite;
+    private TextComposite mainComposite;
     private DataParser wordParser;
     private DataParser lexemeParser;
     private DataParser sentenceParser;
@@ -41,7 +40,7 @@ public class MainTest {
         sentenceParser = new SentenceParser(lexemeParser);
         paragraphParser = new ParagraphParser(sentenceParser);
         textParser = new TextParser(paragraphParser);
-        mainComposite = new UnitComposite(ComponentType.TEXT);
+        mainComposite = new TextComposite(ComponentType.TEXT);
         textParser.parseText(mainComposite, text);
     }
 

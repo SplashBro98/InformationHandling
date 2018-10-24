@@ -1,5 +1,7 @@
 package edu.epam.text.interpreter;
 
+import edu.epam.text.util.Separator;
+
 import java.util.ArrayList;
 
 public class Client {
@@ -7,7 +9,7 @@ public class Client {
     private Context context = new Context();
 
     public void parse(String expression) {
-        for (String lexeme : expression.split("\\p{Blank}+")) {
+        for (String lexeme : expression.split(Separator.DIVIDE_INTO_LEXEMES)) {
             if (Character.isDigit(lexeme.charAt(0))) {
                 expressions.add(c -> c.push(Integer.parseInt(lexeme)));
             } else {
@@ -26,14 +28,14 @@ public class Client {
                             case XOR:
                                 expressions.add(c -> c.push(c.pop() ^ c.pop()));
                                 break;
-                            case LEFTSHIFT:
+                            case LEFT_SHIFT:
                                 expressions.add(context -> {
                                     int first = context.pop();
                                     int second = context.pop();
                                     context.push(second << first);
                                 });
                                 break;
-                            case RIGHTSHIFT:
+                            case RIGHT_SHIFT:
                                 expressions.add(context -> {
                                     int first = context.pop();
                                     int second = context.pop();

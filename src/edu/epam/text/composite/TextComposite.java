@@ -1,16 +1,13 @@
 package edu.epam.text.composite;
 
-import edu.epam.text.composite.ComponentType;
-import edu.epam.text.composite.TextComponent;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import static edu.epam.text.util.Separator.*;
 
 
-public class UnitComposite implements TextComponent {
+public class TextComposite implements TextComponent {
     private List<TextComponent> textComponents = new ArrayList<>();
     private ComponentType componentType;
 
@@ -19,7 +16,7 @@ public class UnitComposite implements TextComponent {
         return Optional.of(Collections.unmodifiableList(textComponents));
     }
 
-    public UnitComposite(ComponentType componentType) {
+    public TextComposite(ComponentType componentType) {
         this.componentType = componentType;
     }
 
@@ -43,9 +40,9 @@ public class UnitComposite implements TextComponent {
         StringBuilder builder = new StringBuilder();
         switch (componentType){
             case TEXT:
-                builder.append("\t");
+                builder.append(TABULATION);
                 for(TextComponent textComponent : textComponents){
-                    builder.append(textComponent.write() + "\n\t");
+                    builder.append(textComponent.write() + LINE_TRANSLATION);
                 }
                 break;
             case PARAGRAPH:
@@ -55,7 +52,7 @@ public class UnitComposite implements TextComponent {
                 break;
             case SENTENCE:
                 for(TextComponent textComponent : textComponents){
-                    builder.append(textComponent.write() + " ");
+                    builder.append(textComponent.write() + SPACE_REGEX);
                 }
                 break;
             case LEXEME:

@@ -4,11 +4,11 @@ public enum MathOperation {
     OR("|",1),
     AND("&",3),
     XOR("^",2),
-    LEFTSHIFT("<<",4),
-    RIGHTSHIFT(">>",4),
+    LEFT_SHIFT("<<",4),
+    RIGHT_SHIFT(">>",4),
     NOT("~",5),
-    LEFTBRACKET("(",0),
-    RIGHTBRACKET("(",0);
+    LEFT_BRACKET("(",0),
+    RIGHT_BRACKET("(",0);
 
     private String operation;
     private int priority;
