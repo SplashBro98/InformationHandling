@@ -1,12 +1,5 @@
 package edu.epam.text.composite;
 
-import edu.epam.text.composite.ComponentType;
-import edu.epam.text.composite.TextComponent;
-
-
-import javafx.scene.effect.Light;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -36,12 +29,12 @@ public class Symbol implements TextComponent {
 
     @Override
     public boolean add(TextComponent component) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean remove(TextComponent component) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override

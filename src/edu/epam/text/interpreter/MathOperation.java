@@ -8,7 +8,7 @@ public enum MathOperation {
     RIGHT_SHIFT(">>",4),
     NOT("~",5),
     LEFT_BRACKET("(",0),
-    RIGHT_BRACKET("(",0);
+    RIGHT_BRACKET(")",0);
 
     private String operation;
     private int priority;

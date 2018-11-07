@@ -1,6 +1,5 @@
 package edu.epam.text.interpreter;
 
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 

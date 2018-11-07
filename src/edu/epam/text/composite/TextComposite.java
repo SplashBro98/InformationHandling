@@ -66,7 +66,7 @@ public class TextComposite implements TextComponent {
                 }
                 break;
         }
-        return builder.toString();
+        return builder.toString().trim();
     }
 
     @Override
